@@ -247,8 +247,6 @@ body.inner main{padding-top:84px}
 .gfeed figure:hover img{transform:scale(1.05)}
 .gfeed .more{display:none}
 .gfeed.open .more{display:block}
-/* последнее фото в неполном ряду растягиваем, чтобы не было дыры */
-.gfeed.open figure:last-child:nth-child(4n+3){grid-column:span 2;aspect-ratio:8/5}
 .gmore{text-align:center;padding-top:28px}
 .lightbox{position:fixed;inset:0;z-index:80;background:rgba(10,10,8,.92);display:none;align-items:center;justify-content:center}
 .lightbox.open{display:flex}
@@ -540,9 +538,8 @@ body.inner main{padding-top:84px}
   .hslider .arrs{display:none}
   .gfeed{grid-template-columns:1fr 1fr}
   .gfeed figure:nth-child(3n+1){grid-column:span 2}
-  .gfeed.open figure:last-child:nth-child(4n+3){aspect-ratio:4/5}
-  .gfeed.open figure:last-child:nth-child(4n+3):not(:nth-child(3n+1)){grid-column:auto}
-  .gfeed figure:last-child:nth-child(3n+2),.gfeed:not(.open) figure:nth-child(8){grid-column:span 2}
+  .gfeed:not(.open) figure:nth-child(8){grid-column:span 2}
+  .gfeed.open figure:last-child{grid-column:auto}
   .cert{min-height:600px}
   .cert::before{background:linear-gradient(180deg,rgba(245,237,224,0) 50%,rgba(245,237,224,.95) 75%)}
   .cert img.bg{object-position:62% 50%}
