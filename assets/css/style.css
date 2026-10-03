@@ -479,28 +479,35 @@ body.inner main{padding-top:84px}
   .svc h3{font-size:14px}
   .svc .cnt{font-size:10px}
   .svc ul,.svc .go{display:none}
-  .pslider{height:auto}
-  .pslide{position:relative;display:none}
-  .pslide.on{display:block}
-  .pslide .bg{position:relative;height:300px}
-  .p1 .shade,.p2 .shade{display:none}
-  .pslide .txt{height:auto;padding:24px 20px 96px;background:#2A2622}
-  .p2 .txt{background:#FBE3E8}
-  .p2 .bigf{font-size:84px}
-  .big-outline{width:274px;margin:8px 0 10px}
-  .p2 .txt{padding-top:24px}
-  .p2 .bokeh,.p2 .sep{display:none}
-  .p2 .greet{font-size:34px}
-  .pslide .desc{font-size:16px}
-  .price-row{gap:16px;flex-wrap:wrap}
+  /* акции на телефоне: карточки одной высоты, фото перетекает в цвет карточки */
+  .pslider{height:auto;display:grid;margin:0 20px;border-radius:20px;overflow:hidden}
+  .pslide{position:relative;inset:auto;grid-area:1/1;display:flex;flex-direction:column;--card:#2A2622}
+  .p2{--card:#FBE3E8;background:var(--card)}
+  .p1{background:var(--card)}
+  .pslide .bg{position:relative;height:280px;flex:none;object-position:72% 20%}
+  .p2 .bg{object-position:68% 20%}
+  .p1 .shade,.p2 .shade{display:block;inset:auto;left:0;right:0;top:190px;height:91px;background:linear-gradient(180deg,transparent,var(--card))}
+  .pslide .txt{flex:1;height:auto;max-width:none;padding:4px 20px 22px;gap:12px;justify-content:flex-start;background:var(--card)}
+  .p2 .txt{padding-top:4px}
+  .p2 .bigf{font-size:80px;line-height:.95}
+  .big-outline{width:240px;margin:0}
+  .p2 .bokeh,.p2 .sep,.p1 .sep{display:none}
+  .p2 .greet{font-size:27px;line-height:1.15}
+  .pslide .desc{font-size:15px;line-height:1.45}
+  .pslide .desc br{display:none}
+  .price-row{gap:14px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+  .price-row .btn{flex:1 1 100%;justify-content:center}
   .price-row .now{font-size:26px}
   .flip{top:16px;left:16px;right:auto;text-align:left}
+  .flip .lbl{text-shadow:0 1px 3px rgba(0,0,0,.4)}
   .tile{width:44px;height:50px;font-size:26px!important}
   .tile .half span,.tile .flap span{line-height:50px;height:50px}
   .tile .bot span{transform:translateY(-25px)}
-  .gift{display:none}
-  .pctrl{right:20px;bottom:24px}
-  .pctrl .arr{width:42px;height:42px}
+  .g-pink{width:78px;height:72px;left:-12px;top:-8px}
+  .g-rasp{width:84px;height:80px;left:-18px;top:170px}
+  .pctrl{right:14px;top:14px;bottom:auto;gap:8px}
+  .pctrl .arr{width:40px;height:40px}
+  .pctrl .pdots,.pctrl span{display:none}
   .about .photo{height:360px}
   .about p{font-size:15px}
   .amen{grid-template-columns:1fr 1fr}
