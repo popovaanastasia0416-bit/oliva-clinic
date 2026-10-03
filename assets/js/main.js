@@ -2,11 +2,14 @@
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const IMG = 'assets/img/';
-const PHONE = '+7 (900) 123-45-67';
+const PHONE = '+7 (000) 123-45-67';
+const TG_URL = 'https://t.me/oliva_clinic_bot';
+const WA_URL = 'https://wa.me/79010972164';
 
 const ICON = {
   tg: '<svg viewBox="0 0 24 24"><path d="M21.5 4.2 18.4 19c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.7-7.9c.4-.3-.1-.5-.6-.2L6.4 12.9 1.8 11.5c-1-.3-1-1 .2-1.5L20.2 3c.8-.3 1.6.2 1.3 1.2z"/></svg>',
   vk: '<svg viewBox="0 0 24 24"><path d="M12.8 17.5c-5.5 0-8.7-3.8-8.8-10h2.8c.1 4.6 2.1 6.5 3.7 6.9V7.5h2.6v3.9c1.6-.2 3.2-2 3.8-3.9h2.6c-.4 2.4-2.2 4.2-3.5 4.9 1.3.6 3.3 2.2 4.1 5.1h-2.9c-.6-1.9-2.1-3.4-4.1-3.6v3.6h-.3z"/></svg>',
+  wa: '<svg viewBox="0 0 24 24"><path d="M12 2.6a9.4 9.4 0 0 0-8.1 14.2L2.6 21.4l4.7-1.2A9.4 9.4 0 1 0 12 2.6z" fill="none" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.2 7.4c.2 0 .5 0 .6.4l.8 1.9c.1.2 0 .4-.1.6l-.5.6c-.1.1-.2.3 0 .5.4.8 1 1.5 1.7 2 .5.4 1 .7 1.6.9.2.1.4 0 .5-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.4 0 .6-.2 1.2-.7 1.6-.6.5-1.4.7-2.2.5-1.5-.4-2.9-1.2-4-2.3-1-1-1.9-2.2-2.3-3.6-.3-.9 0-1.9.7-2.6.2-.3.4-.4.6-.4z" fill="#fff"/></svg>',
   phone: '<svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>',
 };
 
@@ -26,12 +29,18 @@ function header() {
       <div class="contact"><b>${PHONE}</b>ул. Цветочная, 12</div>
       <div class="socials"><a class="soc" href="#" data-toast="Здесь будет ссылка на ВКонтакте клиники">${ICON.vk}</a><a class="soc" href="#" data-toast="Здесь будет ссылка на Telegram клиники">${ICON.tg}</a></div>
     </div>
-    <a class="call" href="tel:+79001234567" aria-label="Позвонить">${ICON.phone}</a>
+    <div class="callwrap"><button class="call" type="button" aria-label="Связаться с клиникой" aria-expanded="false" aria-controls="callMenu" data-callmenu>${ICON.phone}</button>
+      <div class="callmenu" id="callMenu" hidden>
+        <a href="${TG_URL}" target="_blank" rel="noopener"><i class="ci tg">${ICON.tg}</i><span><b>Telegram</b><small>@oliva_clinic_bot</small></span></a>
+        <a href="${WA_URL}" target="_blank" rel="noopener"><i class="ci wa">${ICON.wa}</i><span><b>WhatsApp</b><small>Написать в чат</small></span></a>
+        <a href="tel:+70001234567"><i class="ci tel">${ICON.phone}</i><span><b>${PHONE}</b><small>Позвонить</small></span></a>
+      </div>
+    </div>
   </div></header>
   <div class="mmenu" id="mmenu">
     <div class="top"><img src="${IMG}oliva-full-white.png" alt=""><button class="close" data-menu>✕</button></div>
     <nav><a href="index.html">Главная</a><a href="prices.html">Услуги и цены</a><a href="category-injections.html">Инъекции</a><a href="index.html#hammam">Хаммам и СПА</a><a href="index.html#promos">Акции</a><a href="index.html#reviews">Отзывы</a><a href="index.html#contacts">Контакты</a></nav>
-    <div class="bottom"><a class="btn btn-white" href="#" data-book>Записаться на приём</a><a class="btn btn-ghost" href="tel:+79001234567">${PHONE}</a></div>
+    <div class="bottom"><a class="btn btn-white" href="#" data-book>Записаться на приём</a><a class="btn btn-ghost" href="tel:+70001234567">${PHONE}</a></div>
   </div>`;
 }
 
@@ -174,6 +183,13 @@ function bindChat() {
 
 /* ---------- global clicks ---------- */
 function bindGlobal() {
+  const callMenu = $('#callMenu'), callBtn = $('[data-callmenu]');
+  const setCall = open => { if (!callMenu) return; callMenu.hidden = !open; callBtn.setAttribute('aria-expanded', open); };
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-callmenu]')) return setCall(callMenu.hidden);
+    if (callMenu && !callMenu.hidden && !e.target.closest('#callMenu')) setCall(false);
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setCall(false); });
   document.addEventListener('click', e => {
     const t = e.target.closest('[data-book],[data-menu],[data-close],[data-toast],[data-cert],[data-chat],[data-amount]');
     if (!t) { if (e.target.classList.contains('modal')) closeModals(); return; }
