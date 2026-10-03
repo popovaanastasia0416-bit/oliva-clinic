@@ -247,6 +247,8 @@ body.inner main{padding-top:84px}
 .gfeed figure:hover img{transform:scale(1.05)}
 .gfeed .more{display:none}
 .gfeed.open .more{display:block}
+/* последнее фото в неполном ряду растягиваем, чтобы не было дыры */
+.gfeed.open figure:last-child:nth-child(4n+3){grid-column:span 2;aspect-ratio:8/5}
 .gmore{text-align:center;padding-top:28px}
 .lightbox{position:fixed;inset:0;z-index:80;background:rgba(10,10,8,.92);display:none;align-items:center;justify-content:center}
 .lightbox.open{display:flex}
@@ -499,6 +501,8 @@ body.inner main{padding-top:84px}
   .p1{background:var(--card)}
   .pslide .bg{position:relative;height:280px;flex:none;object-position:72% 20%}
   .p2 .bg{object-position:68% 20%}
+  .p1 .bg{height:300px;padding-top:64px;box-sizing:border-box;-webkit-mask-image:linear-gradient(180deg,transparent 64px,#000 140px);mask-image:linear-gradient(180deg,transparent 64px,#000 140px)}
+  .pslide.p1 .shade{top:210px}
   .p1 .shade,.p2 .shade{display:block;inset:auto;left:0;right:0;top:190px;height:91px;background:linear-gradient(180deg,transparent,var(--card))}
   .pslide .txt{flex:1;height:auto;max-width:none;padding:4px 20px 22px;gap:12px;justify-content:flex-start;background:var(--card)}
   .p2 .txt{padding-top:4px}
@@ -536,6 +540,9 @@ body.inner main{padding-top:84px}
   .hslider .arrs{display:none}
   .gfeed{grid-template-columns:1fr 1fr}
   .gfeed figure:nth-child(3n+1){grid-column:span 2}
+  .gfeed.open figure:last-child:nth-child(4n+3){aspect-ratio:4/5}
+  .gfeed.open figure:last-child:nth-child(4n+3):not(:nth-child(3n+1)){grid-column:auto}
+  .gfeed figure:last-child:nth-child(3n+2),.gfeed:not(.open) figure:nth-child(8){grid-column:span 2}
   .cert{min-height:600px}
   .cert::before{background:linear-gradient(180deg,rgba(245,237,224,0) 50%,rgba(245,237,224,.95) 75%)}
   .cert img.bg{object-position:62% 50%}
