@@ -2,7 +2,7 @@
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const IMG = 'assets/img/';
-const PHONE = '+7 (000) 123-45-67';
+const PHONE = '+7 (861) 190-47-28';
 const TG_URL = 'https://t.me/oliva_clinic_bot';
 const WA_URL = 'https://wa.me/79010972164';
 
@@ -32,14 +32,14 @@ function header() {
       <div class="callmenu" id="callMenu" hidden>
         <a href="${TG_URL}" target="_blank" rel="noopener"><i class="ci tg">${ICON.tg}</i><span><b>Telegram</b><small>@oliva_clinic_bot</small></span></a>
         <a href="${WA_URL}" target="_blank" rel="noopener"><i class="ci wa">${ICON.wa}</i><span><b>WhatsApp</b><small>Написать в чат</small></span></a>
-        <a href="tel:+70001234567"><i class="ci tel">${ICON.phone}</i><span><b>${PHONE}</b><small>Позвонить</small></span></a>
+        <a href="tel:+78611904728"><i class="ci tel">${ICON.phone}</i><span><b>${PHONE}</b><small>Позвонить</small></span></a>
       </div>
     </div>
   </div></header>
   <div class="mmenu" id="mmenu">
     <div class="top"><img src="${IMG}oliva-full-white.png" alt=""><button class="close" data-menu>✕</button></div>
     <nav><a href="index.html">Главная</a><a href="prices.html">Услуги и цены</a><a href="category-injections.html">Инъекции</a><a href="index.html#hammam">Хаммам и СПА</a><a href="index.html#promos">Акции</a><a href="index.html#reviews">Отзывы</a><a href="index.html#contacts">Контакты</a></nav>
-    <div class="bottom"><a class="btn btn-white" href="#" data-book>Записаться на приём</a><a class="btn btn-ghost" href="tel:+70001234567">${PHONE}</a></div>
+    <div class="bottom"><a class="btn btn-white" href="#" data-book>Записаться на приём</a><a class="btn btn-ghost" href="tel:+78611904728">${PHONE}</a></div>
   </div>`;
 }
 
